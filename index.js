@@ -42,7 +42,7 @@ bwm.stdout.on("data", data => {
     };
 
     console.debug(message);
-    client.publish(config.sensorsTopic, message);
+    client.publish(config.sensorsTopic, JSON.stringify(message));
 });
 
 process.on('SIGINT', () => {
