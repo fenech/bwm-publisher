@@ -28,17 +28,18 @@ bwm.stdout.on("data", data => {
 
     const parts = line.split(";");
 
-    if (parts.length < 4) {
+    if (parts.length < 5) {
         console.warn("failed to parse line", line);
     }
 
     // unix_timestamp;iface_name;bytes_out;bytes_in;bytes_total;packets_out;packets_in;packets_total;errors_out;errors_in
-    const [timestamp, iface, bitsIn, bitsOut] = parts;
+    const [timestamp, iface, bitsIn, bitsOut, bandwidth] = parts;
     const message = {
-        timestamp,
+        timestamp: +timestamp * 1000,
         iface,
-        bitsIn,
-        bitsOut
+        bitsIn: +bitsIn,
+        bitsOut: +bitsOut,
+        bandwidth: +bandwidth
     };
 
     console.debug(message);
