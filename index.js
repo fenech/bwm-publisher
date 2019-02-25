@@ -19,7 +19,7 @@ const client = mqtt.connect(
     options
 );
 
-const bwm = spawn("./bwm-ng", ["-I", config.iface, "-o", "csv", "-T", "avg", "-u", "bits"]);
+const bwm = spawn("./bwm-ng", ["-I", config.iface, "-o", "csv", "-T", "rate", "-u", "bits"]);
 
 bwm.stdout.on("data", data => {
     const line = data.toString();
